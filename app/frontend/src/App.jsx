@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react'
 
-const API_BASE =
-  import.meta.env.VITE_API_BASE_URL ||
-  'http://localhost:8000'
+const API_BASE = "https://ca-client-api-dev--cd4h1nf.graysmoke-2e9e3ee0.eastus2.azurecontainerapps.io"
 
 export default function App() {
   const [profile, setProfile] = useState(null)
