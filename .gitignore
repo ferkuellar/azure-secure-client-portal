@@ -1,0 +1,113 @@
+# =========================
+# OS / Editor
+# =========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =========================
+# Logs
+# =========================
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.python-version
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+.venv/
+venv/
+env/
+ENV/
+
+# =========================
+# Node / Frontend
+# =========================
+node_modules/
+dist/
+build/
+coverage/
+.vite/
+.cache/
+
+# Env files
+.env
+.env.*
+!.env.example
+!.env.production
+!.env.local.example
+
+# =========================
+# Terraform
+# =========================
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Terraform variable files with secrets
+*.auto.tfvars
+terraform.tfvars
+!terraform.tfvars.example
+
+# Plan files
+*.tfplan
+
+# =========================
+# Azure / Cloud artifacts
+# =========================
+.azure/
+.azcopy/
+*.publishsettings
+
+# =========================
+# Docker
+# =========================
+docker-compose.override.yml
+
+# =========================
+# Build / temp / misc
+# =========================
+tmp/
+temp/
+*.tmp
+*.bak
+*.orig
+
+# =========================
+# PowerShell artifacts
+# =========================
+*.ps1.xml
+
+# =========================
+# Optional local docs/evidence outputs
+# =========================
+docs/evidence/*.log
+docs/evidence/*.tmp
+docs/evidence/*.cache
