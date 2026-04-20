@@ -9,36 +9,47 @@ export default function App() {
   const [incidents, setIncidents] = useState([])
   const [services, setServices] = useState([])
   const [health, setHealth] = useState(null)
+  const [error, setError] = useState('')
 
   useEffect(() => {
-    fetch(`${API_BASE}/health`)
-      .then(res => res.json())
-      .then(setHealth)
-      .catch(console.error)
+    async function loadData() {
+      try {
+        const [healthRes, profileRes, incidentsRes, servicesRes] = await Promise.all([
+          fetch(`${API_BASE}/health`),
+          fetch(`${API_BASE}/api/profile`),
+          fetch(`${API_BASE}/api/incidents`),
+          fetch(`${API_BASE}/api/services/status`)
+        ])
 
-    fetch(`${API_BASE}/api/profile`)
-      .then(res => res.json())
-      .then(setProfile)
-      .catch(console.error)
+        if (!healthRes.ok || !profileRes.ok || !incidentsRes.ok || !servicesRes.ok) {
+          throw new Error(`API request failed. Health: ${healthRes.status}, Profile: ${profileRes.status}, Incidents: ${incidentsRes.status}, Services: ${servicesRes.status}`)
+        }
 
-    fetch(`${API_BASE}/api/incidents`)
-      .then(res => res.json())
-      .then(setIncidents)
-      .catch(console.error)
+        const healthData = await healthRes.json()
+        const profileData = await profileRes.json()
+        const incidentsData = await incidentsRes.json()
+        const servicesData = await servicesRes.json()
 
-    fetch(`${API_BASE}/api/services/status`)
-      .then(res => res.json())
-      .then(setServices)
-      .catch(console.error)
+        setHealth(healthData)
+        setProfile(profileData)
+        setIncidents(incidentsData)
+        setServices(servicesData)
+      } catch (err) {
+        console.error('Frontend API error:', err)
+        setError(`Could not load backend data from ${API_BASE}`)
+      }
+    }
+
+    loadData()
   }, [])
 
   return (
     <div className="container">
       <header className="hero">
         <h1>Azure Secure Client Portal</h1>
-        <p>
-          Portfolio project for Azure Cloud Architect positioning
-        </p>
+        <p>Portfolio project for Azure Cloud Architect positioning</p>
+        <p><strong>API Base:</strong> {API_BASE}</p>
+        {error && <p style={{ color: '#fca5a5' }}><strong>Error:</strong> {error}</p>}
       </header>
 
       <section className="grid">

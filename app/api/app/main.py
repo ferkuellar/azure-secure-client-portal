@@ -10,8 +10,11 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], #phase 1 only:restrict later
-    allow_credentials=True,
+    allow_origins=[
+        "http://localhost:5173",
+        "https://lively-smoke-0f8472e0f.7.azurestaticapps.net"
+    ],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
