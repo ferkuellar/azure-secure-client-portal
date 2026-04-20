@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-const API_BASE = "https://ca-client-api-dev--cd4h1nf.graysmoke-2e9e3ee0.eastus2.azurecontainerapps.io"
+const API_BASE = "https://ca-client-api-dev.graysmoke-2e9e3ee0.eastus2.azurecontainerapps.io"
 
 export default function App() {
   const [profile, setProfile] = useState(null)
